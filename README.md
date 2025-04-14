@@ -47,10 +47,10 @@ PosRank, OvRank: Player’s position and overall fantasy ranking (target)
 
 ### Pivot tabel
 <iframe
- src="assets/.html"
+ src="assets/pivot_table.html"
  width="800"
  height="600"
  frameborder="0"
  ></iframe>
- 
+
 
