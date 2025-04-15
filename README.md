@@ -32,7 +32,7 @@ PosRank, OvRank: Player’s position and overall fantasy ranking (target)
  height="600"
  frameborder="0"
  ></iframe>
- This box plot shows the distribution of points by position. This Plot shows us that the most valuble position is quarterback followed by runningback. 
+ This box plot shows the distribution of points by position. This Plot shows us that the most valuable position is quarterback followed by runningback. 
 
  ## Fantasy Points Vs Year Histogram
  <iframe
@@ -54,4 +54,31 @@ PosRank, OvRank: Player’s position and overall fantasy ranking (target)
  frameborder="0"
  ></iframe>
 
- This heat map shows the top 10 teams that output the most Fantasy points. With this we can see the cerain positions perform better on certain teams.
+ This heat map shows the top 10 teams that output the most Fantasy points. With this, we can see that certain positions perform better on certain teams.
+
+# Step 3: The Prediction Problem
+
+### ✅ Prediction Problem
+
+We aim to build a regression model to predict a player's final fantasy ranking for the next NFL season based on their previous season's performance statistics.
+
+### 🎯 Response Variable
+
+Our response variable is OvRank — the player's overall fantasy ranking at the end of the following season.
+
+We chose OvRank because it represents a comprehensive, standardized measure of a player's fantasy value across all positions. It's especially useful in helping fantasy managers plan their draft strategies or identify breakout candidates.
+
+### 📊 Type of Prediction
+
+This is a regression problem (not classification), since OvRank is a continuous and ordinal numeric value. Predicting the actual rank (e.g., RB #4, WR #15 overall, etc.) allows for more nuance than bucketing players into performance tiers.
+
+### 📈 Evaluation Metric
+
+We will evaluate our model using Mean Absolute Error (MAE).
+
+We chose MAE because:
+
+1) It is interpretable in the same units as the response variable (ranking position).
+2) It treats all errors linearly and doesn't over-penalize large outliers like RMSE does.
+3) It is more intuitive than metrics like R² when comparing real vs. predicted ranks.
+
