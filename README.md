@@ -78,7 +78,7 @@ We will evaluate our model using Mean Absolute Error (MAE).
 
 We chose MAE because:
 
-1) It is interpretable in the same units as the response variable (ranking position).
-2) It treats all errors linearly and doesn't over-penalize large outliers like RMSE does.
-3) It is more intuitive than metrics like R² when comparing real vs. predicted ranks.
+1) It is interpretable in the same units as the response variable (ranking position).  
+2) It treats all errors linearly and doesn't over-penalize large outliers like RMSE does.  
+3) It is more intuitive than metrics like R² when comparing real vs. predicted ranks.  
 
