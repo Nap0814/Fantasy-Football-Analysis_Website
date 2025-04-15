@@ -82,3 +82,73 @@ We chose MAE because:
 2) It treats all errors linearly and doesn't over-penalize large outliers like RMSE does.  
 3) It is more intuitive than metrics like R² when comparing real vs. predicted ranks.  
 
+
+# Linear Regression Model for Predicting Next Position Rank
+
+## Model Description
+We constructed a linear regression model to predict the **Next_PosRank** (the next position rank) of a player using performance and demographic features. The model was implemented using **scikit-learn's** `Pipeline` and `ColumnTransformer` to facilitate preprocessing and training.
+
+---
+
+## Features Used
+
+The model used the following features:
+
+- **FantPt (Fantasy Points)** — *Quantitative*
+- **Age** — *Quantitative*
+- **FantPos (Fantasy Position)** — *Nominal*
+
+The **target variable** is **Next_PosRank**, a numeric measure indicating a player's projected future ranking within their position.
+
+---
+
+## Feature Types Summary
+
+| Feature   | Type         | Description                                 |
+|-----------|--------------|---------------------------------------------|
+| FantPt    | Quantitative | Continuous numerical feature                |
+| Age       | Quantitative | Continuous numerical feature                |
+| FantPos   | Nominal      | Categorical feature (e.g., QB, RB)          |
+
+- **Quantitative features**: 2  
+- **Nominal features**: 1  
+- **Ordinal features**: 0
+
+---
+
+## Encoding and Preprocessing
+
+- **Quantitative features** (`FantPt`, `Age`) were passed through without transformation using `"passthrough"`.
+- **Nominal feature** (`FantPos`) was encoded using **One-Hot Encoding** via `OneHotEncoder`, with `handle_unknown="ignore"` to avoid errors from unseen categories during testing.
+- A `ColumnTransformer` was used to apply these transformations.
+- These transformations were combined with a `LinearRegression` model inside a `Pipeline`.
+
+---
+
+## Model Performance
+
+The model was evaluated using **Mean Absolute Error (MAE)** and **R-squared (R²)** on the test set:
+
+- **Baseline MAE**: `33.37`
+- **Baseline R²**: `0.40`
+
+---
+
+## Model Evaluation
+
+- An **MAE of 33.37** means that, on average, the model's predicted position rank is off by about 33 ranks.
+- An **R² of 0.40** indicates that approximately 40% of the variance in the target variable is explained by the model.
+
+While the model captures some predictive power, its R² suggests that a substantial portion of variance remains unexplained. Further improvements could include:
+
+- Incorporating more relevant features (e.g., team stats, injury reports)
+- Using a more complex model (e.g., Random Forest or Gradient Boosting)
+- Engineering ordinal features if applicable (e.g., performance tiers)
+
+---
+
+## Conclusion
+
+This **linear regression model** provides a reasonable baseline for predicting Next_PosRank, but it has **room for improvement**.
+
+
