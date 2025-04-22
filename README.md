@@ -331,28 +331,40 @@ Finally, we created a `Next_PosRank` column by applying a group-wise shift based
 
 # Step 3: The Prediction Problem
 
-### Prediction Problem
+## Prediction Problem
 
-Our aim is to build a ordianl regression model to predict a player's final fantasy ranking for the next NFL season based on their previous season's performance statistics.
+Our goal is to build a **regression model** that predicts an NFL player's final fantasy position ranking for the upcoming season, using their performance statistics from the previous season.
 
-### Response Variable
+---
 
-Our response variable is `Next_PosRank` — the player's position fantasy ranking at the end of the following season.
+## Response Variable
 
-We chose `Next_PosRank` because it represents a comprehensive, standardized measure of a player's fantasy value as it changes per position. It's especially useful in helping fantasy managers plan their draft strategies or identify breakout candidates.
+**Next PosRank** (next season’s fantasy ranking within position) is the response variable we aim to predict.
 
-### Type of Prediction
+We chose **Next PosRank** because it offers a normalized, position-specific measure of a player’s fantasy value. This makes it especially useful for fantasy football managers when planning draft strategies or identifying breakout candidates within specific roles (e.g., WR, RB, QB).
 
-This is a ordianl regression problem, since OvRank is a continuous and ordinal numeric value. Predicting the actual rank is quite specific, so we checked accuracy based on how close it was to the expected value at different intervals.
+---
 
-### Evaluation Metric
+## Type of Prediction
 
-We will evaluate our model using Mean Absolute Error (MAE).
+This is a **regression** problem.  
+Although ranks are ordinal, we treat them as continuous for prediction purposes, since we aim to estimate the **exact** or **near-exact** rank value rather than classify into broad tiers.
+
+We also measure performance not just by exact rank, but how close the prediction is to the actual outcome.
+
+---
+
+## Evaluation Metric
+
+We use **Mean Absolute Error (MAE)** as our primary evaluation metric.
 
 We chose MAE because:
 
-1) It is interpretable in the same units as the response variable (ranking position).   
-2) It is more intuitive than metrics like R² when comparing real vs. predicted ranks.  
+- It is directly interpretable in the same units as our target variable (ranking position), making it easy to explain and understand.
+- Unlike R² or RMSE, MAE is more robust to outliers and gives a straightforward sense of how far off predictions are on average.
+- It aligns well with how fantasy managers might perceive draft accuracy (e.g., off by 2–3 ranks is more intuitive than a % variance).
+
+---
 
 
 # Baseline Model Predicting Next Position Rank
