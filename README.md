@@ -329,21 +329,19 @@ Finally, we created a `Next_PosRank` column by applying a group-wise shift based
 
  This heatmap highlights how the top 10 NFL teams distribute Fantasy Points across positions, revealing which teams are especially strong at specific roles like QB, RB, TE, or WR. It helps identify team-position combinations that consistently produce high fantasy value.
 
-# Step 3: The Prediction Problem
-
-## Prediction Problem
+# The Prediction Problem
 
 Our goal is to build a **regression model** that predicts an NFL player's final fantasy position ranking for the upcoming season, using their performance statistics from the previous season.
 
----
+
 
 ## Response Variable
 
-**Next PosRank** (next season’s fantasy ranking within position) is the response variable we aim to predict.
+`Next_PosRank` (next season’s fantasy ranking within position) is the response variable we aim to predict.
 
-We chose **Next PosRank** because it offers a normalized, position-specific measure of a player’s fantasy value. This makes it especially useful for fantasy football managers when planning draft strategies or identifying breakout candidates within specific roles (e.g., WR, RB, QB).
+We chose `Next_PosRank` because it offers a normalized, position-specific measure of a player’s fantasy value. This makes it especially useful for fantasy football managers when planning draft strategies or identifying breakout candidates within specific roles (e.g., WR, RB, QB).
 
----
+
 
 ## Type of Prediction
 
@@ -352,7 +350,7 @@ Although ranks are ordinal, we treat them as continuous for prediction purposes,
 
 We also measure performance not just by exact rank, but how close the prediction is to the actual outcome.
 
----
+
 
 ## Evaluation Metric
 
@@ -364,27 +362,26 @@ We chose MAE because:
 - Unlike R² or RMSE, MAE is more robust to outliers and gives a straightforward sense of how far off predictions are on average.
 - It aligns well with how fantasy managers might perceive draft accuracy (e.g., off by 2–3 ranks is more intuitive than a % variance).
 
----
 
 
 # Baseline Model Predicting Next Position Rank
 
 ## Model Description
-We constructed a regression model to predict the `Next_PosRank` (the next position rank) of a player using FantPt and Age.
+We constructed a ordinal regression model to predict the `Next_PosRank` (the next position rank) of a player using FantPt and Age.
 
----
+
 
 ## Features Used
 
 The model used the following features:
 
-- **FantPt (Fantasy Points)** — *Quantitative*
-- **Age** — *Quantitative*
-- **FantPos (Fantasy Position)** — *Nominal*
+- `FantPt` (Fantasy Points) — *Quantitative*
+- `Age` — *Quantitative*
+- `FantPos` (Fantasy Position)** — *Nominal*
 
-The **target variable** is **Next_PosRank**, a numeric measure indicating a player's projected future ranking within their position.
+The **target variable** is `Next_PosRank`, a numeric measure indicating a player's projected future ranking within their position.
 
----
+
 
 ## Feature Types Summary
 
@@ -398,7 +395,7 @@ The **target variable** is **Next_PosRank**, a numeric measure indicating a play
 - **Nominal features**: 1  
 - **Ordinal features**: 0
 
----
+
 
 ## Encoding and Preprocessing
 
@@ -407,24 +404,23 @@ The **target variable** is **Next_PosRank**, a numeric measure indicating a play
 - A `ColumnTransformer` was used to apply these transformations.
 - These transformations were combined with a `LinearRegression` model inside a `Pipeline`.
 
----
+
 
 ## Model Evaluation
 
-A **final MAE of 9.60** means that, on average, the model's predicted player ranking is off by about **10 ranks** — a significant improvement from earlier iterations.
-
-- **32.31%** of predictions fall within ** 5 ranks**
-- **58.60%** of predictions fall within ** 10 ranks**
-- **80.19%** of predictions fall within ** 15 ranks**
+A **final MAE of 9.60** means that, on average, the model's predicted player ranking is off by about **10 ranks**.
+- **32.31%** of predictions fall within **5 ranks**
+- **58.60%** of predictions fall within **10 ranks**
+- **80.19%** of predictions fall within **15 ranks**
 
 ### Positional Accuracy within ±10 Ranks:
 - **QB**: 64.75%  
 - **WR**: 58.10%  
 - **TE**: 56.95%  
 - **RB**: 54.79%  
-- **FB**: 100.00%
-
-
+- **FB**: 100.00%  
+  
+The reported metrics demonstrate that the model's predictions are generally accurate, with **58.60% of predictions within ±10 ranks**, which is highly valuable for fantasy managers. The positional accuracy also shows strong performance, particularly for quarterbacks (64.75%), indicating the model is effective across most positions while offering opportunities for further improvement in others.
 
 
 # Final Model  
