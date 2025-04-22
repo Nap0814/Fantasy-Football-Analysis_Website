@@ -10,10 +10,10 @@ This matters because millions play fantasy football, and being able to spot brea
 ## Key Columns
 `FantPos`: Player’s fantasy position (RB, WR, etc.)  
 `Age`: Age of the player during the season  
-`Tgt`, Rec, Yds, TD: Receiving stats  
-`Att`, Yds, TD: Rushing stats  
-`FantPt`, PPR: Total and PPR fantasy points scored  
-`PosRank`, OvRank: Player’s position and overall fantasy ranking (target)  
+`Tgt`: Rec, Yds, TD: Receiving stats  
+`Att`: Yds, TD: Rushing stats  
+`FantPt`: PPR: Total and PPR fantasy points scored  
+`PosRank`: OvRank: Player’s position and overall fantasy ranking (target)  
 
 
 # Data Cleaning and Exploratory Data Analysis
