@@ -429,17 +429,15 @@ The reported metrics demonstrate that the model's predictions are generally accu
 
 To better capture the underlying patterns in the data and enhance the model's ability to predict player ranks, we introduced several new features:
 
-- **Total_TD**: Total Touchdown summing from each category, rushing, passing etc.
-- **Touches**: Combines rushing attempts and receptions which are crucial for fantasy production.
-- **YardsPerTouch**: Measures efficiency per opportunity. High efficiency often correlates with better fantasy output and can help differentiate players with similar usage levels.
-- **CatchRate**: Reflects how often a player successfully catches a target. Particularly useful for receivers and tight ends.
-- **TD_PG, RecYards_PG, RushYards_PG**: Normalizing stats per game accounts for variability in games played, which is especially important due to injuries or mid-season trades.
-- **FantPt_PerTouch**: Measures fantasy productivity per opportunity, which helps adjust for volume vs. efficiency.
-- **TeamYearRank**: Ranks a player's fantasy points within their team and season, contextualizing individual performance relative to team role and system.
+- `Total_TD`: Total Touchdown summing from each category, rushing, passing etc.
+- `Touches`: Combines rushing attempts and receptions which are crucial for fantasy production.
+- `YardsPerTouch`: Measures efficiency per opportunity. Better efficiency leads to better players
+- `CatchRate`: Reflects how often a player successfully catches a target.
+- `TD_PG, RecYards_PG, RushYards_PG`: Normalizing stats per game accounts for variability in games played, which is especially important due to injuries.
+- `FantPt_PerTouch`: Measures fantasy productivity per touch.
+- `TeamYearRank`: Ranks a player's fantasy points and how much they contributed to the team.
 
-These engineered features were designed based on football logic and performance analytics rather than arbitrary selection or outcome-based tuning, making them strong candidates for improving generalization.
 
----
 
 ### Modeling Algorithm and Hyperparameter Selection
 
