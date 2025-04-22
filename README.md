@@ -12,7 +12,7 @@ FantPt, PPR: Total and PPR fantasy points scored
 PosRank, OvRank: Player’s position and overall fantasy ranking (target)
 
 
-### All Da plots 
+### Data Overview
 
 # Univariate
 ## Pie chart
