@@ -321,21 +321,21 @@ To prepare the dataset for analysis, We first extracted symbolic annotations in 
 
 # Step 3: The Prediction Problem
 
-### ✅ Prediction Problem
+### Prediction Problem
 
 We aim to build a regression model to predict a player's final fantasy ranking for the next NFL season based on their previous season's performance statistics.
 
-### 🎯 Response Variable
+### Response Variable
 
 Our response variable is OvRank — the player's overall fantasy ranking at the end of the following season.
 
 We chose OvRank because it represents a comprehensive, standardized measure of a player's fantasy value across all positions. It's especially useful in helping fantasy managers plan their draft strategies or identify breakout candidates.
 
-### 📊 Type of Prediction
+### Type of Prediction
 
 This is a regression problem (not classification), since OvRank is a continuous and ordinal numeric value. Predicting the actual rank (e.g., RB #4, WR #15 overall, etc.) allows for more nuance than bucketing players into performance tiers.
 
-### 📈 Evaluation Metric
+### Evaluation Metric
 
 We will evaluate our model using Mean Absolute Error (MAE).
 
@@ -388,7 +388,7 @@ The **target variable** is **Next_PosRank**, a numeric measure indicating a play
 
 ---
 
-## 🧪 Model Evaluation
+## Model Evaluation
 
 A **final MAE of 9.60** means that, on average, the model's predicted player ranking is off by about **10 ranks** — a significant improvement from earlier iterations.
 
@@ -396,7 +396,7 @@ A **final MAE of 9.60** means that, on average, the model's predicted player ran
 - **58.60%** of predictions fall within **±10 ranks**
 - **80.19%** of predictions fall within **±15 ranks**
 
-### 📊 Positional Accuracy within ±10 Ranks:
+### Positional Accuracy within ±10 Ranks:
 - **QB**: 64.75%  
 - **WR**: 58.10%  
 - **TE**: 56.95%  
@@ -436,11 +436,11 @@ To find the optimal hyperparameter (`alpha`), I used **cross-validation** on the
 
 | Metric                 | Baseline Model | Final Model | Improvement   |
 |------------------------|----------------|-------------|---------------|
-| MAE                    | 9.85           | 9.36        | ✓ Lower error |
-| Accuracy Score         | 0.02           | 0.04        | ✓ Improved    |
-| Accuracy ±5 ranks      | 33.12%         | 35.39%      | ✓ Higher      |
-| Accuracy ±10 ranks     | 58.77%         | 60.23%      | ✓ Higher      |
-| Accuracy ±15 ranks     | 78.25%         | 82.31%      | ✓ Higher      |
+| MAE                    | 9.85           | 9.36        |   Lower error |
+| Accuracy Score         | 0.02           | 0.04        |   Improved    |
+| Accuracy ±5 ranks      | 33.12%         | 35.39%      |   Higher      |
+| Accuracy ±10 ranks     | 58.77%         | 60.23%      |   Higher      |
+| Accuracy ±15 ranks     | 78.25%         | 82.31%      |   Higher      |
 
 The final model demonstrated consistent improvements across all key metrics. While the raw accuracy score remains low due to the challenging nature of rank prediction, the model substantially improved on meaningful ordinal metrics like accuracy within ±10 and ±15 ranks. Notably, accuracy within ±10 ranks increased across most positions, with significant jumps for **QB** and **FB**, where contextual features like per-game efficiency and role-adjusted ranking were particularly impactful.
 
