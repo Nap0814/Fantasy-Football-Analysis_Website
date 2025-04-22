@@ -1,22 +1,22 @@
-## Introduction and Question Identification  
-#### We’re using a dataset combining stats from Pro Football Reference and PFF, which includes ~12,000 player-season entries and around 25 features. It covers standard NFL stats (like targets, carries, and touchdowns), fantasy metrics (like points per game and rank), and advanced features like player grades and red zone usage.
+## Data Overview 
+#### We’re using a dataset from Pro Football Reference, which includes ~12,000 player-season entries and around 35 features. It covers standard NFL stats (like targets, carries, and touchdowns), fantasy metrics (like points per game and rank), and advanced features like player grades and red zone usage.
 ## Main Question  
 #### Can we predict a player's final fantasy football rank for the next season using prior-year stats and player grades?
 This matters because millions play fantasy football, and being able to spot breakout players or avoid busts can give players a huge edge.
 ## Key Columns
-FantPos: Player’s fantasy position (RB, WR, etc.)
-Age: Age of the player during the season
-Tgt, Rec, Yds, TD: Receiving stats
-Att, Yds, TD: Rushing stats
-FantPt, PPR: Total and PPR fantasy points scored
-PosRank, OvRank: Player’s position and overall fantasy ranking (target)
+`FantPos`: Player’s fantasy position (RB, WR, etc.)  
+`Age`: Age of the player during the season  
+`Tgt`, Rec, Yds, TD: Receiving stats  
+`Att`, Yds, TD: Rushing stats  
+`FantPt`, PPR: Total and PPR fantasy points scored  
+`PosRank`, OvRank: Player’s position and overall fantasy ranking (target)  
 
 
-### Data Overview
+# Data Cleaning and Exploratory Data Analysis
 
-# Data Cleaning
+## Data Cleaning
 
-To prepare the dataset for analysis, I first extracted symbolic annotations in player names—asterisks for Pro Bowl (`*`) and plus signs for All-Pro (`+`) selections—into two binary columns (`is_probowl` and `is_allpro`) and removed these symbols from the `Player` column to ensure clean, consistent identifiers. I then renamed ambiguous columns such as `Yds`, `Yds.1`, and `TD.1` to more descriptive names like `Pass_yd`, `Rush_yd`, and `Rush_TD` for clarity. Team abbreviations were standardized to reflect current franchises (e.g., `SDG` to `LAC`, `STL` to `LAR`) to maintain consistency across seasons. The dataset was sorted by player and year to support time-based analysis, and missing statistics were imputed with zeros, assuming no recorded play. Lastly, I created a `Next_PosRank` column using a group-wise shift to capture each player’s positional ranking in the following season, enabling predictive modeling of future performance based on past data.
+To prepare the dataset for analysis, We first extracted symbolic annotations in player names—asterisks for Pro Bowl (`*`) and plus signs for All-Pro (`+`) selections—into two binary columns (`is_probowl` and `is_allpro`) and removed these symbols from the `Player` column to ensure clean, consistent identifiers. We then renamed ambiguous columns such as `Yds`, `Yds.1`, and `TD.1` to more descriptive names like `Pass_yd`, `Rush_yd`, and `Rush_TD` for clarity. Team abbreviations were standardized to reflect current franchises (e.g., `SDG` to `LAC`, `STL` to `LAR`) to maintain consistency across seasons. The dataset was sorted by player and year to support time-based analysis, and missing statistics were imputed with zeros, assuming no recorded play. Lastly, we created a `Next_PosRank` column using a group-wise shift to capture each player’s positional ranking in the following season, enabling predictive modeling of future performance based on past data.
 
 <table border="1" class="dataframe">
   <thead>
