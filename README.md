@@ -399,3 +399,44 @@ A **final MAE of 9.60** means that, on average, the model's predicted player ran
 - **RB**: 54.79%  
 - **FB**: 100.00%
 These results indicate that while overall variance explanation is low, the model performs reasonably well for ranking players within a tolerable margin of error—especially for positions like **QB** and **FB**.
+
+
+
+# Final Model  
+
+### Feature Engineering  
+
+To better capture the underlying patterns in the data and enhance the model's ability to predict player ranks, I introduced several new features that reflect domain-specific football knowledge and the data generating process:
+
+- **Total_TD**: Aggregates touchdowns from passing, rushing, and receiving, giving a more holistic view of a player's scoring impact.
+- **Touches**: Combines rushing attempts and receptions. Touches reflect usage and opportunity, which are crucial for fantasy production.
+- **YardsPerTouch**: Measures efficiency per opportunity. High efficiency often correlates with better fantasy output and can help differentiate players with similar usage levels.
+- **CatchRate**: Reflects how often a player successfully catches a target. Particularly useful for receivers and tight ends.
+- **TD_PG, RecYards_PG, RushYards_PG**: Normalizing stats per game accounts for variability in games played, which is especially important due to injuries or mid-season trades.
+- **FantPt_PerTouch**: Measures fantasy productivity per opportunity, which helps adjust for volume vs. efficiency.
+- **TeamYearRank**: Ranks a player's fantasy points within their team and season, contextualizing individual performance relative to team role and system.
+
+These engineered features were designed based on football logic and performance analytics rather than arbitrary selection or outcome-based tuning, making them strong candidates for improving generalization.
+
+---
+
+### Modeling Algorithm and Hyperparameter Selection
+
+I used the **LogisticAT** (ordinal regression with an adjacent-category logistic model) as the core modeling algorithm. This was selected because our target is **ordinal**—a ranking where the order matters, but the distance between ranks is not consistent or known. LogisticAT is specifically designed for such tasks, making it more appropriate than standard regression or classification models.
+
+To find the optimal hyperparameter (`alpha`), I used **cross-validation** on the training set and selected the value that minimized the Mean Absolute Error (MAE) on validation folds. The best performing `alpha` was **100.0**, which likely provided the right balance between model complexity and regularization.
+
+---
+
+### Final Model vs. Baseline Model
+
+| Metric                 | Baseline Model | Final Model | Improvement   |
+|------------------------|----------------|-------------|---------------|
+| MAE                    | 9.85           | 9.36        | ✓ Lower error |
+| Accuracy Score         | 0.02           | 0.04        | ✓ Improved    |
+| Accuracy ±5 ranks      | 33.12%         | 35.39%      | ✓ Higher      |
+| Accuracy ±10 ranks     | 58.77%         | 60.23%      | ✓ Higher      |
+| Accuracy ±15 ranks     | 78.25%         | 82.31%      | ✓ Higher      |
+
+The final model demonstrated consistent improvements across all key metrics. While the raw accuracy score remains low due to the challenging nature of rank prediction, the model substantially improved on meaningful ordinal metrics like accuracy within ±10 and ±15 ranks. Notably, accuracy within ±10 ranks increased across most positions, with significant jumps for **QB** and **FB**, where contextual features like per-game efficiency and role-adjusted ranking were particularly impactful.
+
