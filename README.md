@@ -38,7 +38,7 @@ To prepare the dataset for analysis, We first extracted symbolic annotations in 
       <th>Pass_yd</th>
       <th>Pass_TD</th>
       <th>Int</th>
-      <th>Att.1</th>
+      <th>Rush_Att</th>
       <th>Rush_yd</th>
       <th>Y/A</th>
       <th>Rush_TD</th>
