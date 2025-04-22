@@ -314,7 +314,7 @@ Finally, we created a `Next_PosRank` column by applying a group-wise shift based
  height="600"
  frameborder="0"
  ></iframe>
- This Histogram shows how the number of fanstasy points scored changed thoughout the years. We can see from this that as time goes on the points scored seems to increace.  
+ his histogram shows how the number of fantasy points scored has changed over the years. It reveals an upward trend, indicating that players have been scoring more fantasy points in recent seasons. 
 
 
 
