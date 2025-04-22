@@ -327,23 +327,23 @@ Finally, we created a `Next_PosRank` column by applying a group-wise shift based
  frameborder="0"
  ></iframe>
 
- This heat map shows the top 10 teams that output the most Fantasy points. With this, we can see that certain positions perform better on certain teams.
+ This heatmap highlights how the top 10 NFL teams distribute Fantasy Points across positions, revealing which teams are especially strong at specific roles like QB, RB, TE, or WR. It helps identify team-position combinations that consistently produce high fantasy value.
 
 # Step 3: The Prediction Problem
 
 ### Prediction Problem
 
-Our aim was to build a regression model to predict a player's final fantasy ranking for the next NFL season based on their previous season's performance statistics.
+Our aim is to build a ordianl regression model to predict a player's final fantasy ranking for the next NFL season based on their previous season's performance statistics.
 
 ### Response Variable
 
-Our response variable is Next PosRank — the player's position fantasy ranking at the end of the following season.
+Our response variable is `Next_PosRank` — the player's position fantasy ranking at the end of the following season.
 
-We chose Next PosRank because it represents a comprehensive, standardized measure of a player's fantasy value as it changes per position. It's especially useful in helping fantasy managers plan their draft strategies or identify breakout candidates.
+We chose `Next_PosRank` because it represents a comprehensive, standardized measure of a player's fantasy value as it changes per position. It's especially useful in helping fantasy managers plan their draft strategies or identify breakout candidates.
 
 ### Type of Prediction
 
-This is a regression problem, since OvRank is a continuous and ordinal numeric value. Predicting the actual rank is quite specific, so we checked accuracy based on how close it was to the expected value at different intervals.
+This is a ordianl regression problem, since OvRank is a continuous and ordinal numeric value. Predicting the actual rank is quite specific, so we checked accuracy based on how close it was to the expected value at different intervals.
 
 ### Evaluation Metric
 
