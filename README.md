@@ -14,6 +14,42 @@ PosRank, OvRank: Player’s position and overall fantasy ranking (target)
 
 ### Data Overview
 
+# Data Cleaning
+
+To prepare the dataset for analysis, I first extracted symbolic annotations in player names—asterisks for Pro Bowl (`*`) and plus signs for All-Pro (`+`) selections—into two binary columns (`is_probowl` and `is_allpro`) and removed these symbols from the `Player` column to ensure clean, consistent identifiers. I then renamed ambiguous columns such as `Yds`, `Yds.1`, and `TD.1` to more descriptive names like `Pass_yd`, `Rush_yd`, and `Rush_TD` for clarity. Team abbreviations were standardized to reflect current franchises (e.g., `SDG` to `LAC`, `STL` to `LAR`) to maintain consistency across seasons. The dataset was sorted by player and year to support time-based analysis, and missing statistics were imputed with zeros, assuming no recorded play. Lastly, I created a `Next_PosRank` column using a group-wise shift to capture each player’s positional ranking in the following season, enabling predictive modeling of future performance based on past data.
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Rk</th>
+      <th>Player</th>
+      <th>Tm</th>
+      <th>FantPos</th>
+      <th>Age</th>
+      <th>G</th>
+      <th>GS</th>
+      <th>Cmp</th>
+      <th>Att</th>
+      <th>Pass_yd</th>
+      <th>Pass_TD</th>
+      <th>Int</th>
+      <th>Att.1</th>
+      <th>Rush_yd</th>
+      <th>Y/A</th>
+      <th>Rush_TD</th>
+      <th>Tgt</th>
+      <th>Rec</th>
+      <th>Rec_yd</th>
+      <th>Y/R</th>
+      <th>Rec_TD</th>
+...
+      <td>17.0</td>
+    </tr>
+  </tbody>
+</table>
+
+
 # Univariate
 ## Pie chart
  <iframe
