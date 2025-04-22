@@ -20,7 +20,17 @@ This matters because millions play fantasy football, and being able to spot brea
 
 ## Data Cleaning
 
-To prepare the dataset for analysis, We first extracted symbolic annotations in player names—asterisks for Pro Bowl (`*`) and plus signs for All-Pro (`+`) selections—into two binary columns (`is_probowl` and `is_allpro`) and removed these symbols from the `Player` column to ensure clean, consistent identifiers. We then renamed ambiguous columns such as `Yds`, `Yds.1`, and `TD.1` to more descriptive names like `Pass_yd`, `Rush_yd`, and `Rush_TD` for clarity. Team abbreviations were standardized to reflect current franchises (e.g., `SDG` to `LAC`, `STL` to `LAR`) to maintain consistency across seasons. The dataset was sorted by player and year to support time-based analysis, and missing statistics were imputed with zeros, assuming no recorded play. Lastly, we created a `Next_PosRank` column using a group-wise shift to capture each player’s positional ranking in the following season, enabling predictive modeling of future performance based on past data.
+To prepare the dataset for analysis, we first addressed symbolic annotations in player names—specifically asterisks (`*`) indicating Pro Bowl selections and plus signs (`+`) indicating All-Pro honors. These symbols were part of the original data collection process from Pro Football Reference, where such accolades are embedded directly into player names. To reflect this, we extracted them into two binary columns (`is_probowl` and `is_allpro`) and cleaned the `Player` column to ensure consistent, identifier-friendly names for joins and tracking.
+
+Ambiguous columns like `Yds`, `Yds.1`, and `TD.1` stemmed from the original website’s formatting for multiple stat types (e.g., passing, rushing), so we renamed them to `Pass_yd`, `Rush_yd`, and `Rush_TD` for clarity and usability in downstream analysis.
+
+Team abbreviations were standardized (e.g., `SDG` to `LAC`, `STL` to `LAR`) to align with current franchise naming conventions, accounting for relocations that would otherwise fragment team-based aggregations.
+
+We sorted the dataset by player and year to match the temporal nature of the data and enable longitudinal performance tracking.
+
+Missing statistics were filled with zeros, assuming these reflected zero performance rather than true missing data, as the original site omits stats when no play occurred.
+
+Finally, we created a `Next_PosRank` column by applying a group-wise shift based on player and position—mirroring the year-to-year progression of the NFL season—to support predictive modeling of future fantasy performance.
 
 <table border="1" class="dataframe">
   <thead>
