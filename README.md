@@ -1,5 +1,6 @@
-# Dataset Introduction and Question Identification
 **Authors:** [Vidit Tiwari](https://www.linkedin.com/in/viditmt/), [Navdeep Sirigiri](https://www.linkedin.com/in/navdeep-sirigiri-1173222b0/)
+# Dataset Introduction and Question Identification
+
 ## Data Overview  
 
 We’re using a dataset from [Pro Football Reference](https://www.pro-football-reference.com/years/2024/fantasy.htm), which includes ~12,000 player-season entries and around 35 features. It covers standard NFL stats (like targets, carries, and touchdowns), fantasy metrics (like points per game and rank), and advanced features like player grades and red zone usage over since 2004.  
