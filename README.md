@@ -408,17 +408,17 @@ The **target variable** is `Next_PosRank`, a numeric measure indicating a player
 
 ## Model Evaluation
 
-A **final MAE of 9.60** means that, on average, the model's predicted player ranking is off by about **10 ranks**.
-- **32.31%** of predictions fall within **5 ranks**
-- **58.60%** of predictions fall within **10 ranks**
-- **80.19%** of predictions fall within **15 ranks**
+A **final MAE of 9.45** means that, on average, the model's predicted player ranking is off by about **10 ranks**.
+- **29.92%** of predictions fall within **5 ranks**
+- **62.08%** of predictions fall within **10 ranks**
+- **83.68%** of predictions fall within **15 ranks**
 
 ### Positional Accuracy within ±10 Ranks:
-- **QB**: 64.75%  
-- **WR**: 58.10%  
-- **TE**: 56.95%  
-- **RB**: 54.79%  
-- **FB**: 100.00%  
+- **QB**: 71.07%  
+- **WR**: 56.89%  
+- **TE**: 56.77%  
+- **RB**: 64.34%  
+- **FB**: 00.00%  
   
 The reported metrics demonstrate that the model's predictions are generally accurate, with **58.60% of predictions within ±10 ranks**, which is highly valuable for fantasy managers. The positional accuracy also shows strong performance, particularly for quarterbacks (64.75%), indicating the model is effective across most positions while offering opportunities for further improvement in others.
 
@@ -431,7 +431,7 @@ To better capture the underlying patterns in the data and enhance the model's ab
 
 - `Total_TD`: Total Touchdown summing from each category, rushing, passing etc.
 - `Touches`: Combines rushing attempts and receptions which are crucial for fantasy production.
-- `YardsPerTouch`: Measures efficiency per opportunity. Better efficiency leads to better players
+- `YardsPerTouch`: Measures efficiency per opportunity; better efficiency leads to better players.
 - `CatchRate`: Reflects how often a player successfully catches a target.
 - `TD_PG, RecYards_PG, RushYards_PG`: Normalizing stats per game accounts for variability in games played, which is especially important due to injuries.
 - `FantPt_PerTouch`: Measures fantasy productivity per touch.
@@ -451,11 +451,18 @@ To find the optimal hyperparameter (`alpha`), we used **cross-validation** on th
 
 | Metric                 | Baseline Model | Final Model | Improvement   |
 |------------------------|----------------|-------------|---------------|
-| MAE                    | 9.85           | 9.36        |   Lower error |
-| Accuracy Score         | 0.02           | 0.04        |   Improved    |
-| Accuracy ±5 ranks      | 33.12%         | 35.39%      |   Higher      |
-| Accuracy ±10 ranks     | 58.77%         | 60.23%      |   Higher      |
-| Accuracy ±15 ranks     | 78.25%         | 82.31%      |   Higher      |
+| MAE                    | 9.45           | 8.86        |   Lower error |
+| Accuracy Score         | 0.02           | 0.02        |   No change   |
+| Accuracy ±5 ranks      | 33.12%         | 34.56%      |   Higher      |
+| Accuracy ±10 ranks     | 58.77%         | 65.52%      |   Higher      |
+| Accuracy ±15 ranks     | 78.25%         | 85.12%      |   Higher      |
+| WR ±10 ranks           | 56.89%         | 59.88%      |   Higher      |
+| TE ±10 ranks           | 56.77%         | 63.23%      |   Higher      |
+| RB ±10 ranks           | 64.34%         | 66.43%      |   Higher      |
+| QB ±10 ranks           | 71.07%         | 74.84%      |   Higher      |
+| FB ±10 ranks           | 00.00%         | 00.00%      |   Higher      |
 
-The final model demonstrated consistent improvements across all key metrics. While the raw accuracy score remains low due to the challenging nature of rank prediction, the model substantially improved on meaningful ordinal metrics like accuracy within 10 and 15 ranks. Notably, accuracy within 10 ranks increased across most positions, with significant jumps for **QB**, where contextual features like per-game efficiency and role-adjusted ranking were particularly impactful.
+
+
+The final model demonstrated consistent improvements across all key metrics. While the raw accuracy score remains low due to the challenging nature of rank prediction, the model substantially improved on meaningful ordinal metrics like accuracy within 10 and 15 ranks. Notably, accuracy within 10 ranks increased across most positions, with significant jumps for **QB**, where contextual features like per-game efficiency and role-adjusted ranking were particularly impactful. We also found that since there were not as many **FB**, it was hard to get proper tests in that category.
 
