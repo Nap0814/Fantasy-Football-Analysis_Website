@@ -1,5 +1,3 @@
-#  
-
 # Dataset Introduction and Question Identification
 
 ## Data Overview
