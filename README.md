@@ -2,7 +2,7 @@
 
 ## Data Overview  
 
-We’re using a dataset from [Pro Football Reference](https://www.pro-football-reference.com/years/2024/fantasy.htm), which includes ~12,000 player-season entries and around 35 features. It covers standard NFL stats (like targets, carries, and touchdowns), fantasy metrics (like points per game and rank), and advanced features like player grades and red zone usage.  
+We’re using a dataset from [Pro Football Reference](https://www.pro-football-reference.com/years/2024/fantasy.htm), which includes ~12,000 player-season entries and around 35 features. It covers standard NFL stats (like targets, carries, and touchdowns), fantasy metrics (like points per game and rank), and advanced features like player grades and red zone usage over since 2004.  
 
 ## Main Question  
 #### Can we predict a player's final fantasy football rank for the next season using prior-year stats and player grades?
