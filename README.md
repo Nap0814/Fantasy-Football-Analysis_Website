@@ -285,17 +285,17 @@ Finally, we created a `Next_PosRank` column by applying a group-wise shift based
 
 
 
-# Univariate
-## Pie chart
+# Univariate Analysis
+## Pie chart of Position distribution
  <iframe
  src="assets/PositionPieChart.html"
  width="800"
  height="600"
  frameborder="0"
  ></iframe>
- This pie chart shows the distibution of fantasy positions available in out dataset. Based on this chart we can see that there are more Fanstasy recivers than any other position.
+ This pie chart shows the distribution of fantasy positions available in our dataset. Based on this chart, we can see that there are more Fantasy receivers than any other position.
 
-# Multivariate
+# Bivariate Analysis
 ## Points vs Position BoxPlot
  <iframe
  src="assets/PointsvsPositionBoxPlot.html"
@@ -303,7 +303,7 @@ Finally, we created a `Next_PosRank` column by applying a group-wise shift based
  height="600"
  frameborder="0"
  ></iframe>
- This box plot shows the distribution of points by position. This Plot shows us that the most valuable position is quarterback followed by runningback. 
+ This box plot shows the distribution of points by position. This Plot shows us that the most valuable position is quarterback, followed by running back. 
 
  ## Fantasy Points Vs Year Histogram
  
@@ -317,7 +317,7 @@ Finally, we created a `Next_PosRank` column by applying a group-wise shift based
 
 
 
-### Pivot table
+### Heat Map of Score output per team
 
 <iframe
  src="assets/Heat_Map_Pivot_Table.html"
@@ -332,17 +332,17 @@ Finally, we created a `Next_PosRank` column by applying a group-wise shift based
 
 ### Prediction Problem
 
-We aim to build a regression model to predict a player's final fantasy ranking for the next NFL season based on their previous season's performance statistics.
+Our aim was to build a regression model to predict a player's final fantasy ranking for the next NFL season based on their previous season's performance statistics.
 
 ### Response Variable
 
-Our response variable is OvRank — the player's overall fantasy ranking at the end of the following season.
+Our response variable is Next PosRank — the player's position fantasy ranking at the end of the following season.
 
-We chose OvRank because it represents a comprehensive, standardized measure of a player's fantasy value across all positions. It's especially useful in helping fantasy managers plan their draft strategies or identify breakout candidates.
+We chose Next PosRank because it represents a comprehensive, standardized measure of a player's fantasy value as it changes per position. It's especially useful in helping fantasy managers plan their draft strategies or identify breakout candidates.
 
 ### Type of Prediction
 
-This is a regression problem (not classification), since OvRank is a continuous and ordinal numeric value. Predicting the actual rank (e.g., RB #4, WR #15 overall, etc.) allows for more nuance than bucketing players into performance tiers.
+This is a regression problem, since OvRank is a continuous and ordinal numeric value. Predicting the actual rank is quite specific, so we checked accuracy based on how close it was to the expected value at different intervals.
 
 ### Evaluation Metric
 
@@ -350,15 +350,14 @@ We will evaluate our model using Mean Absolute Error (MAE).
 
 We chose MAE because:
 
-1) It is interpretable in the same units as the response variable (ranking position).  
-2) It treats all errors linearly and doesn't over-penalize large outliers like RMSE does.  
-3) It is more intuitive than metrics like R² when comparing real vs. predicted ranks.  
+1) It is interpretable in the same units as the response variable (ranking position).   
+2) It is more intuitive than metrics like R² when comparing real vs. predicted ranks.  
 
 
-# Linear Regression Model for Predicting Next Position Rank
+# Baseline Model Predicting Next Position Rank
 
 ## Model Description
-We constructed a linear regression model to predict the **Next_PosRank** (the next position rank) of a player using performance and demographic features. The model was implemented using **scikit-learn's** `Pipeline` and `ColumnTransformer` to facilitate preprocessing and training.
+We constructed a regression model to predict the `Next_PosRank` (the next position rank) of a player using FantPt and Age.
 
 ---
 
@@ -401,9 +400,9 @@ The **target variable** is **Next_PosRank**, a numeric measure indicating a play
 
 A **final MAE of 9.60** means that, on average, the model's predicted player ranking is off by about **10 ranks** — a significant improvement from earlier iterations.
 
-- **32.31%** of predictions fall within **±5 ranks**
-- **58.60%** of predictions fall within **±10 ranks**
-- **80.19%** of predictions fall within **±15 ranks**
+- **32.31%** of predictions fall within ** 5 ranks**
+- **58.60%** of predictions fall within ** 10 ranks**
+- **80.19%** of predictions fall within ** 15 ranks**
 
 ### Positional Accuracy within ±10 Ranks:
 - **QB**: 64.75%  
@@ -411,7 +410,7 @@ A **final MAE of 9.60** means that, on average, the model's predicted player ran
 - **TE**: 56.95%  
 - **RB**: 54.79%  
 - **FB**: 100.00%
-These results indicate that while overall variance explanation is low, the model performs reasonably well for ranking players within a tolerable margin of error—especially for positions like **QB** and **FB**.
+
 
 
 
@@ -419,10 +418,10 @@ These results indicate that while overall variance explanation is low, the model
 
 ### Feature Engineering  
 
-To better capture the underlying patterns in the data and enhance the model's ability to predict player ranks, I introduced several new features that reflect domain-specific football knowledge and the data generating process:
+To better capture the underlying patterns in the data and enhance the model's ability to predict player ranks, we introduced several new features:
 
-- **Total_TD**: Aggregates touchdowns from passing, rushing, and receiving, giving a more holistic view of a player's scoring impact.
-- **Touches**: Combines rushing attempts and receptions. Touches reflect usage and opportunity, which are crucial for fantasy production.
+- **Total_TD**: Total Touchdown summing from each category, rushing, passing etc.
+- **Touches**: Combines rushing attempts and receptions which are crucial for fantasy production.
 - **YardsPerTouch**: Measures efficiency per opportunity. High efficiency often correlates with better fantasy output and can help differentiate players with similar usage levels.
 - **CatchRate**: Reflects how often a player successfully catches a target. Particularly useful for receivers and tight ends.
 - **TD_PG, RecYards_PG, RushYards_PG**: Normalizing stats per game accounts for variability in games played, which is especially important due to injuries or mid-season trades.
