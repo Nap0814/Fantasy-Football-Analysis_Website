@@ -2,7 +2,7 @@
 
 ## Data Overview  
 
-We’re using a dataset from Pro Football Reference, which includes ~12,000 player-season entries and around 35 features. It covers standard NFL stats (like targets, carries, and touchdowns), fantasy metrics (like points per game and rank), and advanced features like player grades and red zone usage.  
+We’re using a dataset from [Pro Football Reference](https://www.pro-football-reference.com/years/2024/fantasy.htm), which includes ~12,000 player-season entries and around 35 features. It covers standard NFL stats (like targets, carries, and touchdowns), fantasy metrics (like points per game and rank), and advanced features like player grades and red zone usage.  
 
 ## Main Question  
 #### Can we predict a player's final fantasy football rank for the next season using prior-year stats and player grades?
@@ -298,6 +298,7 @@ To prepare the dataset for analysis, We first extracted symbolic annotations in 
  This box plot shows the distribution of points by position. This Plot shows us that the most valuable position is quarterback followed by runningback. 
 
  ## Fantasy Points Vs Year Histogram
+ 
  <iframe
  src="assets/FantasyPointsVsYearHistogram.html"
  width="800"
@@ -426,7 +427,7 @@ These engineered features were designed based on football logic and performance 
 
 ### Modeling Algorithm and Hyperparameter Selection
 
-I used the **LogisticAT** (ordinal regression with an adjacent-category logistic model) as the core modeling algorithm. This was selected because our target is **ordinal**—a ranking where the order matters, but the distance between ranks is not consistent or known. LogisticAT is specifically designed for such tasks, making it more appropriate than standard regression or classification models.
+I used the `LogisticAT` (ordinal regression with an adjacent-category logistic model) as the core modeling algorithm. This was selected because our target is **ordinal**—a ranking where the order matters, but the distance between ranks is not consistent or known. `LogisticAT` is specifically designed for such tasks, making it more appropriate than standard regression or classification models.
 
 To find the optimal hyperparameter (`alpha`), I used **cross-validation** on the training set and selected the value that minimized the Mean Absolute Error (MAE) on validation folds. The best performing `alpha` was **100.0**, which likely provided the right balance between model complexity and regularization.
 
