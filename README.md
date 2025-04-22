@@ -125,30 +125,18 @@ The **target variable** is **Next_PosRank**, a numeric measure indicating a play
 
 ---
 
-## Model Performance
+## 🧪 Model Evaluation
 
-The model was evaluated using **Mean Absolute Error (MAE)** and **R-squared (R²)** on the test set:
+A **final MAE of 9.60** means that, on average, the model's predicted player ranking is off by about **10 ranks** — a significant improvement from earlier iterations.
 
-- **Baseline MAE**: `33.37`
-- **Baseline R²**: `0.40`
+- **32.31%** of predictions fall within **±5 ranks**
+- **58.60%** of predictions fall within **±10 ranks**
+- **80.19%** of predictions fall within **±15 ranks**
 
----
-
-## Model Evaluation
-
-- An **MAE of 33.37** means that, on average, the model's predicted position rank is off by about 33 ranks.
-- An **R² of 0.40** indicates that approximately 40% of the variance in the target variable is explained by the model.
-
-While the model captures some predictive power, its R² suggests that a substantial portion of variance remains unexplained. Further improvements could include:
-
-- Incorporating more relevant features (e.g., team stats, injury reports)
-- Using a more complex model (e.g., Random Forest or Gradient Boosting)
-- Engineering ordinal features if applicable (e.g., performance tiers)
-
----
-
-## Conclusion
-
-This **linear regression model** provides a reasonable baseline for predicting Next_PosRank, but it has **room for improvement**.
-
-
+### 📊 Positional Accuracy within ±10 Ranks:
+- **QB**: 64.75%  
+- **WR**: 58.10%  
+- **TE**: 56.95%  
+- **RB**: 54.79%  
+- **FB**: 100.00%
+These results indicate that while overall variance explanation is low, the model performs reasonably well for ranking players within a tolerable margin of error—especially for positions like **QB** and **FB**.
