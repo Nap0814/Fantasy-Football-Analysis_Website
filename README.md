@@ -293,7 +293,7 @@ Finally, we created a `Next_PosRank` column by applying a group-wise shift based
  height="600"
  frameborder="0"
  ></iframe>
- This pie chart shows the distribution of fantasy positions available in our dataset. Based on this chart, we can see that there are more Fantasy receivers than any other position.
+ This pie chart displays the distribution of fantasy football positions in our dataset, with wide receivers making up the largest group. This suggests that WRs are the most common fantasy players, which could influence drafting depth and positional strategies.
 
 # Bivariate Analysis
 ## Points vs Position BoxPlot
@@ -303,7 +303,8 @@ Finally, we created a `Next_PosRank` column by applying a group-wise shift based
  height="600"
  frameborder="0"
  ></iframe>
- This box plot shows the distribution of points by position. This Plot shows us that the most valuable position is quarterback, followed by running back. 
+ This box plot shows the distribution of fantasy points by position, with quarterbacks having the highest median point totals. This suggests that quarterbacks are generally the most valuable fantasy players, followed by running backs. 
+ 
 
  ## Fantasy Points Vs Year Histogram
  
