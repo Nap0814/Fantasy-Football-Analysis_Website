@@ -26,9 +26,7 @@ Ambiguous columns like `Yds`, `Yds.1`, and `TD.1` stemmed from the original webs
 
 Team abbreviations were standardized (e.g., `SDG` to `LAC`, `STL` to `LAR`) to align with current franchise naming conventions, accounting for relocations that would otherwise fragment team-based aggregations.
 
-We sorted the dataset by player and year to match the temporal nature of the data and enable longitudinal performance tracking.
-
-Missing statistics were filled with zeros, assuming these reflected zero performance rather than true missing data, as the original site omits stats when no play occurred.
+Most missing statistics were filled with zeros, assuming these reflected zero performance rather than true missing data, as the original site omits stats when no play occurred. For example, the `2PM` column was often NaN, since many times players don't record this stat. For the `OvRank` column we imputed the maximum value for that given year, since all values that were NaN in this column fell below a baseline rank set by Pro Football Reference. We used the maximum value since we deemed players below the the threshold to be equal in rank.
 
 Finally, we created a `Next_PosRank` column by applying a group-wise shift based on player and position—mirroring the year-to-year progression of the NFL season—to support predictive modeling of future fantasy performance.
 
