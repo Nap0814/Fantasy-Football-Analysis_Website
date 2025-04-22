@@ -441,9 +441,9 @@ To better capture the underlying patterns in the data and enhance the model's ab
 
 ### Modeling Algorithm and Hyperparameter Selection
 
-I used the `LogisticAT` (ordinal regression with an adjacent-category logistic model) as the core modeling algorithm. This was selected because our target is **ordinal**—a ranking where the order matters, but the distance between ranks is not consistent or known. `LogisticAT` is specifically designed for such tasks, making it more appropriate than standard regression or classification models.
+We used the `LogisticAT` (ordinal regression with an adjacent-category logistic model) as the model algorithm. This was selected because our target is **ordinal**. `LogisticAT` is specifically designed for such tasks, making it more appropriate than standard regression or classification models.
 
-To find the optimal hyperparameter (`alpha`), I used **cross-validation** on the training set and selected the value that minimized the Mean Absolute Error (MAE) on validation folds. The best performing `alpha` was **100.0**, which likely provided the right balance between model complexity and regularization.
+To find the optimal hyperparameter (`alpha`), we used **cross-validation** on the training set and selected the value that minimized the Mean Absolute Error (MAE) on validation folds. The best performing `alpha` was **100.0**, which likely provided the right balance between model complexity and regularization.
 
 ---
 
@@ -457,5 +457,5 @@ To find the optimal hyperparameter (`alpha`), I used **cross-validation** on the
 | Accuracy ±10 ranks     | 58.77%         | 60.23%      |   Higher      |
 | Accuracy ±15 ranks     | 78.25%         | 82.31%      |   Higher      |
 
-The final model demonstrated consistent improvements across all key metrics. While the raw accuracy score remains low due to the challenging nature of rank prediction, the model substantially improved on meaningful ordinal metrics like accuracy within ±10 and ±15 ranks. Notably, accuracy within ±10 ranks increased across most positions, with significant jumps for **QB** and **FB**, where contextual features like per-game efficiency and role-adjusted ranking were particularly impactful.
+The final model demonstrated consistent improvements across all key metrics. While the raw accuracy score remains low due to the challenging nature of rank prediction, the model substantially improved on meaningful ordinal metrics like accuracy within 10 and 15 ranks. Notably, accuracy within 10 ranks increased across most positions, with significant jumps for **QB**, where contextual features like per-game efficiency and role-adjusted ranking were particularly impactful.
 
